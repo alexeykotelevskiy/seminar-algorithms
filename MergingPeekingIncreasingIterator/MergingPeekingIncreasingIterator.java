@@ -18,14 +18,14 @@ import IPriorityQueue.*;
 public class MergingPeekingIncreasingIterator implements Iterator<Integer> {
 
     private Comparator<PeekingIncreasingIterator> comparator = (p1, p2) -> {
-        if (p1.peek() > p2.peek())
+        if (p1.peek() < p2.peek())
             return 1;
         return -1;
     };
     private ArrayPriorityQueue<PeekingIncreasingIterator> heap;
     public MergingPeekingIncreasingIterator(IPeekingIterator... peekingIterator) {
         /* TODO: implement it */
-        heap = new ArrayPriorityQueue<PeekingIncreasingIterator>();
+        heap = new ArrayPriorityQueue<PeekingIncreasingIterator>(comparator);
         for (int i = 0; i < peekingIterator.length; i++) {
             PeekingIncreasingIterator it = (PeekingIncreasingIterator)peekingIterator[i];
             heap.add(it);
